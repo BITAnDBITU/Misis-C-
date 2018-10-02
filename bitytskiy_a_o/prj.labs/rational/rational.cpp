@@ -1,141 +1,8 @@
-// Copyright 2018 by Polevoy Dmitry under Free Public License 1.0.0
-
 #include <iostream>
 #include <sstream>
+#include "rational.h"
 
-class Rational {
-public:
-  Rational() = default;
-  Rational(const int numerator);
-  Rational(const int numerator, const int denominator);
-  bool operator==(const Rational& rhs) const {
-	  return (num == rhs.num) && (den == rhs.den);
-  }
-  bool operator!=(const Rational& rhs) const
-  {
-	  return !operator==(rhs); 
-  }
-  Rational& operator+=(const Rational& rhs);
-  Rational& operator+=(const int rhs);
- 
-  Rational& operator-=(const Rational& rhs);
-  Rational& operator-=(const int rhs);
- 
-  Rational& operator*=(const Rational& rhs);
-  Rational& operator*=(const int rhs);
- 
-  Rational& operator/=(const Rational& rhs);
-  Rational& operator/=(const int rhs);
-
-  int getNumerator();
-  void setNumerator(int numerator);
-
-  int getDenominator();
-  void setDenominator(int numerator);
-
-  void normalForm();
-
-  std::ostream& writeTo(std::ostream& ostrm) const;
-  std::istream& readFrom(std::istream& istrm);
-private:
-  int num{0};
-  int den{1};
-
-  static const char leftBrace{'{'};
-  static const char separator{'/'};
-  static const char rightBrace{'}'};
-};
-
-Rational operator+(const Rational& lhs, const Rational& rhs);
-Rational operator-(const Rational& lhs, const Rational& rhs);
-Rational operator*(const Rational& lhs, const Rational& rhs);
-Rational operator/(const Rational& lhs, const Rational& rhs);
-
-Rational operator+(const Rational& lhs, const Rational& rhs)
-{
-	Rational sum(lhs);
-	sum += rhs;
-	return sum;
-}
-
-Rational operator-(const Rational& lhs, const Rational& rhs)
-{
-	Rational sub(lhs);
-	sub -= rhs;
-	return sub;
-}
-
-Rational operator*(const Rational& lhs, const Rational& rhs)
-{
-	Rational mul(lhs);
-	mul *= rhs;
-	return mul;
-}
-
-Rational operator/(const Rational& lhs, const Rational& rhs)
-{
-	Rational div(lhs);
-	div /= rhs;
-	return div;
-}
-inline std::ostream& operator<<(std::ostream& ostrm, const Rational& rhs) {
-  return rhs.writeTo(ostrm);
-}
-
-inline std::istream& operator>>(std::istream& istrm, Rational& rhs) {
-  return rhs.readFrom(istrm);
-}
-
-bool testParse(const std::string& str) {
-  using namespace std;
-  istringstream istrm(str);
-  Rational z;
-  istrm >> z;
-  if (istrm.good()) {
-    cout << "Read success: " << str << " -> " << z << endl;
-  } else {
-    cout << "Read error : " << str << " -> " << z << endl;
-  }
-  return istrm.good();
-}
-bool testSum() {
-	Rational n1(15, 2);
-	Rational n2(2, 97);
-	Rational answ(1459, 194);
-	Rational rez = n1 + n2;
-	return rez == answ;
-}
-bool testSub() {
-	Rational n1(15, 2);
-	Rational n2(2, 5);
-	Rational answ(71, 10);
-	Rational rez = n1 - n2;
-	return rez == answ;
-}
-bool testMul() {
-	Rational n1(15, 2);
-	Rational n2(2, 10);
-	Rational answ(3, 2);
-	n1 *= n2;
-	return n1 == answ;
-}
-bool testDiv() {
-	Rational n1(7, 4);
-	Rational n2(2, 3);
-	Rational answ(21, 8);
-	n1 /= n2;
-	return n1 == answ;
-}
-int main() {
-  using namespace std;
-
-  cout << "testSum: " << (testSum() ? "success" : "you have mistakes") << endl;
-  cout << "testSub: " << (testSub() ? "success" : "you have mistakes") << endl;
-  cout << "testMul: " << (testMul() ? "success" : "you have mistakes") << endl;
-  cout << "testDiv: " << (testDiv() ? "success" : "you have mistakes") << endl;
-  
-  return 0;
-}
+using namespace std;
 
 Rational::Rational(const int numerator)
 {
@@ -227,25 +94,26 @@ void Rational::normalForm() {
 	}
 }
 std::ostream& Rational::writeTo(std::ostream& ostrm) const {
-  ostrm << leftBrace << num  << separator << den << rightBrace;
-  return ostrm;
+	ostrm << leftBrace << num << separator << den << rightBrace;
+	return ostrm;
 }
 
 std::istream& Rational::readFrom(std::istream& istrm) {
-  char leftBrace(0);
-  int numerator(0);
-  char comma(0);
-  int denominator(0);
-  char rightBrace(0);
-  istrm >> leftBrace >> numerator >> comma >> denominator >> rightBrace;
-  if (istrm.good()) {
-    if ((Rational::leftBrace == leftBrace) && (Rational::separator == comma) &&
-        (Rational::rightBrace == rightBrace)) {
-      num = numerator;
-      den = denominator;
-    } else {
-      istrm.setstate(std::ios_base::failbit);
-    }
-  }
-  return istrm;
+	char leftBrace(0);
+	int numerator(0);
+	char comma(0);
+	int denominator(0);
+	char rightBrace(0);
+	istrm >> leftBrace >> numerator >> comma >> denominator >> rightBrace;
+	if (istrm.good()) {
+		if ((Rational::leftBrace == leftBrace) && (Rational::separator == comma) &&
+			(Rational::rightBrace == rightBrace)) {
+			num = numerator;
+			den = denominator;
+		}
+		else {
+			istrm.setstate(std::ios_base::failbit);
+		}
+	}
+	return istrm;
 }

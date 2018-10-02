@@ -1,0 +1,5 @@
+C:/Users/Андрей/Desktop/bitytskiy_a_o/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Андрей/Desktop/bitytskiy_a_o/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Андрей/Desktop/bitytskiy_a_o/build/prj.labs/complex/CMakeFiles/complex.dir
+C:/Users/Андрей/Desktop/bitytskiy_a_o/build/prj.labs/rational/CMakeFiles/rational.dir
+C:/Users/Андрей/Desktop/bitytskiy_a_o/build/prj.labs/dynamicalarray/CMakeFiles/dynamicalarray.dir
