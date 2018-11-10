@@ -1,4 +1,6 @@
 #pragma once
+#ifndef COMPLEX_H
+#define COMPLEX_H
 #include <iostream>
 #include <sstream>
 
@@ -32,4 +34,5 @@ struct Complex {
 	static const char separator{ ',' };
 	static const char rightBrace{ '}' };
 };
-};
+
+#endif;

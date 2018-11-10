@@ -1,4 +1,6 @@
 #pragma once
+#ifndef RATIONAL_H
+#define RATIONAL_H
 #include <iostream>
 #include <sstream>
 
@@ -44,3 +46,4 @@ private:
 	static const char separator{ '/' };
 	static const char rightBrace{ '}' };
 };
+#endif

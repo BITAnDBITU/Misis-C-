@@ -85,6 +85,14 @@ bool testDiv() {
 	n1 /= n2;
 	return n1 == answ;
 }
+void testException(){
+	Rational n1(15, -2);
+	Rational n2(-15, 2);
+	Rational n3(-15, -2);
+	Rational n4(15, 2);
+	cout << (n1 == n2) << endl;
+	cout << (n3 == n4) << endl;
+}
 int main() {
 	using namespace std;
 
@@ -92,6 +100,7 @@ int main() {
 	cout << "testSub: " << (testSub() ? "success" : "you have mistakes") << endl;
 	cout << "testMul: " << (testMul() ? "success" : "you have mistakes") << endl;
 	cout << "testDiv: " << (testDiv() ? "success" : "you have mistakes") << endl;
+	testException();
 
 	return 0;
 }

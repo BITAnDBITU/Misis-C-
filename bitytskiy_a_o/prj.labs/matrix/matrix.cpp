@@ -18,6 +18,8 @@ Matrix::Matrix() {
 Matrix::Matrix(const int sizeStr1_, const int sizeStol1_) {
 	if (sizeStr1_ < 0 || sizeStol1_ < 0)
 		throw std::exception("Size should not be negative");
+	sizeStr_ = sizeStr1_;
+	sizeStol_ = sizeStol1_;
 	data_ = new int*[sizeStol_];
 	for (int i(0); i < sizeStol_; i++)
 	{
@@ -34,7 +36,7 @@ Matrix::Matrix(const Matrix& rhs) {
 	}
 	for (int i(0); i < sizeStol_; i++)
 	{
-		for (int j(0); i < sizeStr_; i++)
+		for (int j(0); j < sizeStr_; j++)
 		{
 			data_[i][j] = rhs.data_[i][j];
 		}
@@ -47,8 +49,8 @@ Matrix::~Matrix() {
 	}
 	delete[] data_;
 }
-int*& Matrix::operator[](const int i) const {
-	return data_[i];
+int& Matrix::at(const int i, const int j) {
+	return data_[i][j];
 }
 int Matrix::getSizeStol() {
 	return sizeStol_;
@@ -56,12 +58,15 @@ int Matrix::getSizeStol() {
 int Matrix::getSizeStr() {
 	return sizeStr_;
 }
+std::ostream& operator<<(std::ostream& ostrm, const Matrix& rhs) {
+	return rhs.writeTo(ostrm);
+}
 std::ostream& Matrix::writeTo(std::ostream& ostrm) const {
 	for (int i(0); i < sizeStol_; i++)
 	{
-		for (int j(0); i < sizeStr_; i++)
+		for (int j(0); j < sizeStr_; j++)
 		{
-			ostrm << this[i][j] << " ";
+			ostrm << data_[i][j] << " ";
 		}
 		ostrm << endl;
 	}

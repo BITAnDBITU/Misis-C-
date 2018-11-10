@@ -13,6 +13,7 @@ Rational::Rational(const int numerator, const int denominator)
 {
 	setNumerator(numerator);
 	setDenominator(denominator);
+	normalForm();
 }
 
 int Rational::getNumerator() {
@@ -72,15 +73,11 @@ Rational& Rational::operator/=(const Rational& rhs) {
 	return *this;
 }
 int gcd(int a, int b) {
-	while (a != b) {
-		if (a > b) {
-			int tmp = a;
-			a = b;
-			b = tmp;
-		}
-		b = b - a;
+	if (b == 0)
+		return a;
+	else {
+		return gcd(b, a % b);
 	}
-	return a;
 }
 void Rational::normalForm() {
 	if (num != 0 && den != 0) {
