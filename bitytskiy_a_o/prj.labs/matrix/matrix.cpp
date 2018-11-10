@@ -14,7 +14,19 @@ Matrix::Matrix() {
 	}
 
 }
-
+Matrix& Matrix::operator=(const Matrix& rhs) {
+	sizeStol_ = rhs.sizeStol_;
+	sizeStr_ = rhs.sizeStr_;
+	for (int i (0); i < sizeStr_; i++)
+	{
+		data_[i] = new int[sizeStol_];
+		for (int j(0); j < sizeStol_; j++)
+		{
+			data_[i][j] = rhs.data_[i][j];
+		}
+	}
+	return *this;
+}
 Matrix::Matrix(const int sizeStr1_, const int sizeStol1_) {
 	if (sizeStr1_ < 0 || sizeStol1_ < 0)
 		throw std::exception("Size should not be negative");
@@ -50,6 +62,26 @@ Matrix::~Matrix() {
 	delete[] data_;
 }
 int& Matrix::at(const int i, const int j) {
+
+	if (i < 0)
+	{
+		throw std::exception("Size of row should not be negative");
+	}
+
+	if (j < 0)
+	{
+		throw std::exception("Size of column should not be negative");
+	}
+
+	if (i > sizeStr_)
+	{
+		throw std::exception("Row size should be less than row size of matrix");
+	}
+
+	if (j > sizeStol_)
+	{
+		throw std::exception("Column size should be less than column size of matrix");
+	}
 	return data_[i][j];
 }
 int Matrix::getSizeStol() {

@@ -13,6 +13,7 @@ public:
 	int& at(const int i, const int j);
 	int getSizeStr();
 	int getSizeStol();
+	Matrix& operator=(const Matrix& rhs);
 	std::ostream& writeTo(std::ostream& ostrm) const;
 private:
 	int sizeStr_{ 0 };

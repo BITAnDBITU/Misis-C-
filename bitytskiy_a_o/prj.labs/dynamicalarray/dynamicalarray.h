@@ -13,7 +13,7 @@ public:
 		if (size_ == obj.size_) {
 			for (int i = 0; i < size_; i++)
 			{
-				if (this[i] != obj[i]) {
+				if (data_[i] != obj.data_[i]) {
 					return false;
 				}
 			}

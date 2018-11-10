@@ -22,6 +22,15 @@ DynamicalArray::DynamicalArray(const int size) {
 }
 
 DynamicalArray& DynamicalArray::operator=( const DynamicalArray& rhs) {
+	if (this != &rhs) {
+		if (size_ < rhs.size_) {
+			int* newData(new int[rhs.size_]);
+			delete[] data_;
+			data_ = newData;
+		}
+		std::copy(rhs.data_, rhs.data_ + rhs.size_, data_);
+		size_ = rhs.size_;
+	}
 	return *this;
 }
 DynamicalArray::DynamicalArray(const DynamicalArray& obj) {
