@@ -27,10 +27,8 @@ public:
 
 	StackOnList& operator=(const StackOnList& rhs) {
 		if (this != &rhs) {
-
+			clear();
 			Node<T>* newNode = rhs.head_;
-			delete head_;
-
 			StackOnList<T> otherStack;
 			while (newNode != nullptr) {
 				otherStack.push(newNode->data_);
