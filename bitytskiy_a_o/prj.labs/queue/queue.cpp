@@ -30,7 +30,7 @@ Queue& Queue::operator=(const Queue& rhs) {
 	if (this != &rhs) {
 		if (size_ < rhs.size_) {
 			int* newData(new int[rhs.size_]);
-			delete data_;
+			delete[] data_;
 			data_ = newData;
 		}
 		std::copy(rhs.data_, rhs.data_ + rhs.size_, data_);
@@ -54,12 +54,3 @@ void Queue::push(const int val) {
 	data_[i_last] = val;
 	i_last = (i_last + 1) % size_;
 }
-/*std::ostream& Queue::writeTo(std::ostream& ostrm) const {
-	ostrm << '{';
-	for (int i = i_first; i < i_last; i++)
-	{
-		cout << data_[i] << ",";
-	}
-	ostrm << '}';
-	return ostrm;
-}*/

@@ -13,12 +13,33 @@ public:
 	}
 
 	StackOnList(const StackOnList& obj) {
-
+		Node<T>* newNode = obj.head_;
+		StackOnList<T> otherStack;
+		while (newNode != nullptr) {
+			otherStack.push(newNode->data_);
+			newNode = newNdoe->next_;
+		}
+		while (!otherStack.isEmpty()) {
+			push(otherStack.head_->data_);
+			otherStack.pop();
+		}
 	}
 
 	StackOnList& operator=(const StackOnList& rhs) {
 		if (this != &rhs) {
 
+			Node<T>* newNode = rhs.head_;
+			delete head_;
+
+			StackOnList<T> otherStack;
+			while (newNode != nullptr) {
+				otherStack.push(newNode->data_);
+				newNode = newNode->next_;
+			}
+			while (!otherStack.isEmpty()) {
+				push(otherStack.head_->data_);
+				otherStack.pop();
+			}
 		}
 		return *this;
 	}
