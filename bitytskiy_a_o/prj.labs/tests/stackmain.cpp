@@ -1,6 +1,7 @@
-#include"stack.h"
+#include<stackOnList/stack.h>
 #include <iostream>
 using namespace std;
+
 void test1() {
 	StackOnList<int> stack1;
 	stack1.push(2);

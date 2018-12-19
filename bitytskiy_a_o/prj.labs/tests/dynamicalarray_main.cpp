@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dynamicalarray.h"
+#include <dynamicalarray/dynamicalarray.h>
 
 using namespace std;
 void test() {

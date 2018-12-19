@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include "rational.h"
+#include <rational/rational.h>
 
 using namespace std;
 

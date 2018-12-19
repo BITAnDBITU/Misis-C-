@@ -1,6 +1,7 @@
 
 #include <iostream>
-#include "queue.h"
+#include <queue/queue.h>
+
 using namespace std;
 void test1() {
 	Queue queue1(5);

@@ -1,2 +1,2 @@
-add_executable(queue queue.cpp queuemain.cpp queue.h)
+add_library(queue queue.h queue.cpp)
 set_property(TARGET queue PROPERTY CXX_STANDARD 14)
