@@ -24,8 +24,19 @@ bool Queue::isEmpty() {
 }
 
 bool Queue::isFull(){
-	return (i_last + 1) % size_ == i_first;
+	return (i_last - i_first) >= size_ ;
 }
+
+void Queue::push(const int val) {
+	if (isFull()) {
+		throw std::exception("Queue is full");
+	}
+	else {
+		data_[i_last % size_] = val;
+		i_last++;
+	}
+}
+
 Queue& Queue::operator=(const Queue& rhs) {
 	if (this != &rhs) {
 		if (size_ < rhs.size_) {
@@ -39,18 +50,31 @@ Queue& Queue::operator=(const Queue& rhs) {
 	return *this;
 }
 int Queue::pop() {
-	int result = data_[i_first];
-	i_first = (i_first + 1) % size_;
-	return result;
+	if (isEmpty()) {
+		throw std::exception("Queue is empty");
+	}
+	else {
+		int result = data_[i_first % size_];
+		i_first ++;
+		return result;
+	}
 	
 }
 int Queue::top() {
-	return data_[i_first];
-}
-void Queue::push(const int val) {
-	if (isFull()) {
-		throw std::exception("Queue is full");
+	if (isEmpty()) {
+		throw std::exception("Queue is empty");
 	}
-	data_[i_last] = val;
-	i_last = (i_last + 1) % size_;
+	else {
+		return data_[i_first % size_];
+	}
 }
+
+std::ostream& Queue::writeTo(std::ostream& ostrm) const {
+	ostrm << "( ";
+	for (int i(i_first);i < i_last;i++){
+		ostrm << data_[i % size_] << " ";
+	}
+	ostrm << " )";
+	return ostrm;
+}
+

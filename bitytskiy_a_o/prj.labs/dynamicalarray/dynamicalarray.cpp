@@ -36,8 +36,7 @@ DynamicalArray& DynamicalArray::operator=( const DynamicalArray& rhs) {
 DynamicalArray::DynamicalArray(const DynamicalArray& obj) {
 	size_ = obj.size_;
 	data_ = new int(size_);
-	for (int i (0); i < size_; i++)
-	{
+	for (int i (0); i < size_; i++){
 		data_[i] = obj.data_[i];
 	}
 }
@@ -46,21 +45,35 @@ int DynamicalArray::getSize() {
 	return size_;
 }
 void DynamicalArray::setSize(int size) {
-	int* newData = new int[size];
+	if (size < 0) {
+		throw std::exception("Negative size!");
+	}
+	else {
 
-	for (int i(0); i < size_; i++)
-		newData[i] = data_[i];
+		int* newData = new int[size];
+		if (size <= size_) {
+			for (int i(0); i < size_; i++) {
+				newData[i] = data_[i];
+			}
+		}
+		else {
+			for (int i(0); i < size_; i++) {
+				newData[i] = data_[i];
+			}
+			for (int i(size_); i < size; i++) {
+				newData[i] = 0;
+			}
+		}
+		data_ = newData;
+		size_ = size;
 
-	data_ = newData;
-	size_ = size;
+	}
 }
-int* DynamicalArray::getData() {
-	return data_;
-}
-void DynamicalArray::setData(int* data) {
-	data_ = data;
-}
+
 int& DynamicalArray:: operator[](const int i) const {
+	if (i < 0 || i >= size_)
+		throw std::exception("Index out range");
+	else
 	return data_[i];
 }
 std::ostream& DynamicalArray::writeTo(std::ostream& ostrm) const {

@@ -7,18 +7,11 @@ public:
 	~PriorityQueue();
 	PriorityQueue(const PriorityQueue &obj);
 	explicit PriorityQueue(int size);
-	bool isEmpty();
 
 	bool isEmpty() const;
-
-	bool isFull();
-
 	bool isFull() const;
-
-	int top();
-
+	int getSize() const;
 	int top() const;
-
 	int pop();
 
 	void enqueue(int value, int priority);

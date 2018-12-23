@@ -15,7 +15,7 @@ public:
 	void push(const int val);
 	int top();
 	int pop();
-	//std::ostream& writeTo(std::ostream& ostrm) const;
+	std::ostream& writeTo(std::ostream& ostrm) const;
 
 private:
 	int* data_{ nullptr };

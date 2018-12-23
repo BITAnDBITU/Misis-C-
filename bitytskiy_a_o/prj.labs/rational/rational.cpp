@@ -67,10 +67,15 @@ Rational& Rational::operator*=(const Rational& rhs) {
 	return *this;
 }
 Rational& Rational::operator/=(const Rational& rhs) {
-	num *= rhs.den;
-	den *= rhs.num;
-	normalForm();
-	return *this;
+	if (rhs.num == 0) {
+		throw std::exception("DIV ON ZERO");
+	}
+	else {
+		num *= rhs.den;
+		den *= rhs.num;
+		normalForm();
+		return *this;
+	}
 }
 int gcd(int a, int b) {
 	if (b == 0)

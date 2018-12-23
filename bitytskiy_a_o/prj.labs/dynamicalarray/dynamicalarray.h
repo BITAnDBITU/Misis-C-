@@ -25,8 +25,6 @@ public:
 
 	int getSize();
 	void setSize(int size);
-	int* getData();
-	void setData(int* data);
 	int& operator[](const int ind) const;
 	DynamicalArray& operator=( const DynamicalArray& rhs);
 	std::ostream& writeTo(std::ostream& ostrm) const;

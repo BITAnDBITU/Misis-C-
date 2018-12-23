@@ -19,12 +19,8 @@ PriorityQueue::~PriorityQueue() {
 	delete[]priorities_;
 }
 
-bool PriorityQueue::isEmpty() {
-	return end_ == 0;
-}
-
-bool PriorityQueue::isFull() {
-	return size_ == end_;
+int PriorityQueue::getSize() const {
+	return size_;
 }
 
 bool PriorityQueue::isEmpty() const {
@@ -58,9 +54,9 @@ void PriorityQueue::enqueue(int value, int priority) {
 
 	for (int i(0); i < end_; i++) {
 		if (priority <= priorities_[i]) {
-			for (int j(i); j < end_; j++) {
-				data_[j + 1] = data_[j];
-				priorities_[j + 1] = priorities_[j];
+			for (int j(end_-1); j > i; j--) {
+				data_[j] = data_[j-1];
+				priorities_[j] = priorities_[j-1];
 			}
 			data_[i] = value;
 			priorities_[i] = priority;

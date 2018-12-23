@@ -62,8 +62,13 @@ Complex& Complex::operator*=(const Complex& rhs) {
 }
 Complex& Complex::operator/=(const Complex& rhs) {
 	int tempRe = re;
-	re = ((re * rhs.re) + (im * rhs.im)) / ((rhs.re * rhs.re) + (rhs.im * rhs.im));
-	im = ((im * rhs.re) - (tempRe * rhs.im)) / ((rhs.re * rhs.re) + (rhs.im * rhs.im));
+	if (re == 0 && im == 0) {
+		throw std::exception("Деление на 0!");
+	}
+	else {
+		re = ((re * rhs.re) + (im * rhs.im)) / ((rhs.re * rhs.re) + (rhs.im * rhs.im));
+		im = ((im * rhs.re) - (tempRe * rhs.im)) / ((rhs.re * rhs.re) + (rhs.im * rhs.im));
+	}
 	return *this;
 }
 
