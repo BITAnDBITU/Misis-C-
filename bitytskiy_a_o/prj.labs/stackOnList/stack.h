@@ -34,7 +34,8 @@ private:
 		Node<A>()= default;
 		Node<A>* next_{ nullptr };
 		A data_{ 0 };
-		Node(Node<A>* next,const A& data) : next_(next), data_(data) {
+		Node(Node<A>* next,const A& data) 
+			: next_(next), data_(data) {
 
 		}
 	};
@@ -49,7 +50,7 @@ StackOnList<T>::StackOnList(const StackOnList& obj) {
 	StackOnList<T> otherStack;
 	while (newNode != nullptr) {
 		otherStack.push(newNode->data_);
-		newNode = newNdoe->next_;
+		newNode = newNode->next_;
 	}
 	while (!otherStack.isEmpty()) {
 		push(otherStack.head_->data_);
@@ -68,7 +69,7 @@ StackOnList<T>& StackOnList<T>::operator=(const StackOnList<T>& rhs) {
 			newNode = newNode->next_;
 		}
 		while (!otherStack.isEmpty()) {
-			push(otherStack.head_->data_);
+			push(otherStack.top());
 			otherStack.pop();
 		}
 	}

@@ -1,6 +1,9 @@
 #pragma once
 #ifndef PRIORITY_QUEUE
 #define PRIORITY_QUEUE
+#include <iostream>
+using namespace std;
+
 class PriorityQueue {
 public:
 	PriorityQueue() = default;
@@ -10,19 +13,17 @@ public:
 
 	bool isEmpty() const;
 	bool isFull() const;
-	int getSize() const;
 	int top() const;
 	int pop();
-
-	void enqueue(int value, int priority);
-
+	void push(int value, int priority);
+	std::ostream& writeTo(std::ostream& ostrm) const;
 	PriorityQueue &operator=(const PriorityQueue &rhs);
 
+private:
 	int *data_;
 	int *priorities_;
-
-private:
 	int size_;
-	int end_;
+	int end_{0};
 };
+std::ostream& operator<<(std::ostream& ostrm, const PriorityQueue& obj);
 #endif

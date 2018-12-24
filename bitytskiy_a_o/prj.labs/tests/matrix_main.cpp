@@ -7,9 +7,9 @@ using namespace std;
 void test() {
 	Matrix mat1;
 	Matrix mat2(4,4);
-	for (int i (0); i < mat2.getSizeStol(); i++)
+	for (int i (0); i < mat2.getSizeStr(); i++)
 	{
-		for(int j (0); j < mat2.getSizeStr(); j++)
+		for(int j (0); j < mat2.getSizeStol(); j++)
 		{
 			mat2.at(i,j) = 1;
 		}

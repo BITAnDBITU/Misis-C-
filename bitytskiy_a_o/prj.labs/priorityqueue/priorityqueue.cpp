@@ -1,26 +1,29 @@
 #include "priorityqueue.h"
+#include <iostream>
 #include <algorithm>
 
 PriorityQueue::PriorityQueue(int size)
-		: size_(size), end_(0){
+	: size_(size) {
 	data_ = new int[size_];
 	priorities_ = new int[size_];
-}
-PriorityQueue::PriorityQueue(const PriorityQueue &obj)
-		: size_(obj.size_),end_(obj.end_) {
-	data_ = new int[size_];
-	std::copy(obj.data_, obj.data_ + obj.size_, data_);
-	
-	priorities_ = new int[size_];
-	std::copy(obj.priorities_, obj.priorities_+ obj.size_, priorities_);
-}
-PriorityQueue::~PriorityQueue() {
-	delete[]data_;
-	delete[]priorities_;
 }
 
-int PriorityQueue::getSize() const {
-	return size_;
+PriorityQueue::PriorityQueue(const PriorityQueue &obj)
+	: size_(obj.size_), end_(obj.end_) {
+
+	data_ = new int[obj.size_];
+	for (int i = 0; i < obj.size_; i++) {
+		data_[i] = obj.data_[i];
+	}
+
+	priorities_ = new int[obj.size_];
+	for (int i = 0; i < obj.size_; i++) {
+		priorities_[i] = obj.priorities_[i];
+	}
+}
+PriorityQueue::~PriorityQueue() {
+	delete[] data_;
+	delete[] priorities_;
 }
 
 bool PriorityQueue::isEmpty() const {
@@ -32,7 +35,7 @@ bool PriorityQueue::isFull() const {
 }
 
 int PriorityQueue::top() const {
-	return data_[end_];
+	return data_[end_ - 1];
 }
 
 int PriorityQueue::pop() {
@@ -40,29 +43,46 @@ int PriorityQueue::pop() {
 		throw std::exception("Queue is empty");
 	}
 
-	int result = data_[end_];
+	int result = data_[end_ - 1];
 	end_--;
 	return result;
 }
 
-void PriorityQueue::enqueue(int value, int priority) {
+void PriorityQueue::push(int value, int priority) {
 	if (isFull()) {
 		throw std::exception("Queue is full");
 	}
-
-	end_++;
-
+	if (priority <= 0) {
+		throw std::exception("Priority cannot be negative");
+	}
+	bool isPushed = false;
 	for (int i(0); i < end_; i++) {
-		if (priority <= priorities_[i]) {
-			for (int j(end_-1); j > i; j--) {
-				data_[j] = data_[j-1];
-				priorities_[j] = priorities_[j-1];
+		if (priority >= priorities_[i]) {
+			for (int j(end_); j > i; j--) {
+				data_[j] = data_[j - 1];
+				priorities_[j] = priorities_[j - 1];
 			}
 			data_[i] = value;
 			priorities_[i] = priority;
+			isPushed = true;
 			break;
 		}
 	}
+	if (!isPushed) {
+		data_[end_] = value;
+		priorities_[end_] = priority;
+	}
+	end_++;
+}
+
+std::ostream & PriorityQueue::writeTo(std::ostream & ostrm) const
+{
+	ostrm << "( ";
+	for (int i(0); i < end_; i++) {
+		ostrm << data_[i] << " ";
+	}
+	ostrm << " )";
+	return ostrm;
 }
 
 PriorityQueue &PriorityQueue::operator=(const PriorityQueue &rhs) {
@@ -81,4 +101,9 @@ PriorityQueue &PriorityQueue::operator=(const PriorityQueue &rhs) {
 		size_ = rhs.size_;
 	}
 	return *this;
+}
+
+std::ostream & operator<<(std::ostream & ostrm, const PriorityQueue & obj)
+{
+	return obj.writeTo(ostrm);
 }

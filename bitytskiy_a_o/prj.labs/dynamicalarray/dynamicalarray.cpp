@@ -52,7 +52,7 @@ void DynamicalArray::setSize(int size) {
 
 		int* newData = new int[size];
 		if (size <= size_) {
-			for (int i(0); i < size_; i++) {
+			for (int i(0); i < size; i++) {
 				newData[i] = data_[i];
 			}
 		}

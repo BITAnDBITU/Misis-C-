@@ -7,25 +7,28 @@ int main() {
 	PriorityQueue queue1(10);
 	
 	try {
-		queue1.enqueue(1, 3);
-		queue1.enqueue(2, 5);
-		queue1.enqueue(3, 10);
-		queue1.enqueue(4, 1);
-		queue1.enqueue(9, 0);
+		queue1.push(1, 3);
+		queue1.push(2, 5);
+		queue1.push(3, 10);
+		queue1.push(4, 1);
+		queue1.push(9, 2);
 	}
 	catch (const std::exception&) {
 		cout << "Queue is full" << endl;
 	}
 	PriorityQueue queue2(queue1);
+	cout << queue1 << endl;
+	cout << queue2 << endl;
+	try {
+		cout << "queue1.top() = " << queue1.top() << endl;
+		cout << "queue2.top() = " << queue2.top() << endl;
+		cout << "queue1.pop() = " << queue1.pop() << endl;
+		cout << "queue2.pop() = " << queue2.pop() << endl;
+	}
+	catch (const exception&) {
+		cout << "Queue is empty" << endl;
+	}
 	
-	cout << "queue2.pop() = " << queue2.pop() << endl;
-	queue1.enqueue(10, 11);
-	cout << "queue1.enqueue(10) = " << queue1.top() << endl;
-	cout << "queue1.top() = " << queue1.top() << endl;
-	queue1.pop();
-	queue1.enqueue(11, 3);
-	cout << "queue1.top() = " << queue1.top() << endl;
-
 	PriorityQueue queue3(10);
 	try {
 		queue3.pop();
