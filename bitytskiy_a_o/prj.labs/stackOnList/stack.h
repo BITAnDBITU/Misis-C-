@@ -3,6 +3,7 @@
 #define STACK
 #include <stddef.h>
 #include <iosfwd>
+
 template<class T>
 class StackOnList {
 public:
@@ -53,7 +54,7 @@ StackOnList<T>::StackOnList(const StackOnList& obj) {
 		newNode = newNode->next_;
 	}
 	while (!otherStack.isEmpty()) {
-		push(otherStack.head_->data_);
+		push(otherStack.top());
 		otherStack.pop();
 	}
 }

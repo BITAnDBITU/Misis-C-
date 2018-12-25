@@ -8,15 +8,18 @@ void test1() {
 	stack1.push(1);
 	stack1.push(6);
 	stack1.push(7);
+	StackOnList<int> stack2(stack1);
 	try {
 		while (!stack1.isEmpty()) {
-			cout << stack1.top() << endl;
+			cout << stack1.top() + " " + stack2.top() << endl;
+			stack2.pop();
 			stack1.pop();
 		}
 	}
 	catch (const std::exception&) {
 		cout << "smth wrong" << endl;
 	}
+
 }
 void test2() {
 	StackOnList<int> stack1;

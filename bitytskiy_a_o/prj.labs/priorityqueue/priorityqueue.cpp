@@ -31,7 +31,7 @@ bool PriorityQueue::isEmpty() const {
 }
 
 bool PriorityQueue::isFull() const {
-	return size_ == end_;
+	return size_ == end_ - 1;
 }
 
 int PriorityQueue::top() const {
