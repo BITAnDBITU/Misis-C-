@@ -1,5 +1,6 @@
 #include<stackOnList/stack.h>
 #include <iostream>
+
 using namespace std;
 
 void test1() {
@@ -16,20 +17,22 @@ void test1() {
 			stack1.pop();
 		}
 	}
-	catch (const std::exception&) {
+	catch (const std::exception &) {
 		cout << "smth wrong" << endl;
 	}
 
 }
+
 void test2() {
 	StackOnList<int> stack1;
 	try {
 		stack1.top();
 	}
-	catch (const std::exception&) {
+	catch (const std::exception &) {
 		cout << "smth wrong" << endl;
 	}
 }
+
 void test3() {
 	StackOnList<int> stack1;
 	stack1.push(2);
@@ -38,6 +41,7 @@ void test3() {
 	stack1.push(7);
 	cout << stack1 << endl;
 }
+
 int main() {
 	test1();
 	test2();

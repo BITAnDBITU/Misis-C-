@@ -2,18 +2,19 @@
 #include <sstream>
 #include <complex/complex.h>
 
-Complex operator+(const Complex& lhs, const Complex& rhs);
-Complex operator-(const Complex& lhs, const Complex& rhs);
+Complex operator+(const Complex &lhs, const Complex &rhs);
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs) {
+Complex operator-(const Complex &lhs, const Complex &rhs);
+
+inline std::ostream &operator<<(std::ostream &ostrm, const Complex &rhs) {
 	return rhs.writeTo(ostrm);
 }
 
-inline std::istream& operator>>(std::istream& istrm, Complex& rhs) {
+inline std::istream &operator>>(std::istream &istrm, Complex &rhs) {
 	return rhs.readFrom(istrm);
 }
 
-bool testParse(const std::string& str) {
+bool testParse(const std::string &str) {
 	using namespace std;
 	istringstream istrm(str);
 	Complex z;
@@ -26,6 +27,7 @@ bool testParse(const std::string& str) {
 	}
 	return istrm.good();
 }
+
 bool testSum() {
 	Complex answ(6.0, 6.0);
 	Complex n1(2.0, 3.0);
@@ -33,6 +35,7 @@ bool testSum() {
 	Complex result = n1 + n2;
 	return answ == result;
 }
+
 bool testSub() {
 	Complex answ(2.0, 1.0);
 	Complex n1(6.0, 4.0);
@@ -40,6 +43,7 @@ bool testSub() {
 	Complex result = n1 - n2;
 	return answ == result;
 }
+
 bool testMul() {
 	Complex answer(-1, 47);
 	Complex number1(5, 3);
@@ -47,6 +51,7 @@ bool testMul() {
 	number1 *= number2;
 	return number1 == answer;
 }
+
 bool testDiv() {
 	Complex answer(-1.5, -0.5);
 	Complex number1(-2, 1);
@@ -55,6 +60,7 @@ bool testDiv() {
 
 	return number1 == answer;
 }
+
 int main() {
 	using namespace std;
 

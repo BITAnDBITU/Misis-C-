@@ -4,8 +4,7 @@
 using namespace std;
 
 
-DynamicalArray::DynamicalArray()
-{
+DynamicalArray::DynamicalArray() {
 	size_ = 0;
 	data_ = new int[size_];
 }
@@ -15,16 +14,15 @@ DynamicalArray::DynamicalArray(const int size) {
 		throw std::exception("Size should not be negative");
 	size_ = size;
 	data_ = new int[size_];
-	for (int i (0); i < size_; i++)
-	{
+	for (int i(0); i < size_; i++) {
 		data_[i] = 0;
 	}
 }
 
-DynamicalArray& DynamicalArray::operator=( const DynamicalArray& rhs) {
+DynamicalArray &DynamicalArray::operator=(const DynamicalArray &rhs) {
 	if (this != &rhs) {
 		if (size_ < rhs.size_) {
-			int* newData(new int[rhs.size_]);
+			int *newData(new int[rhs.size_]);
 			delete[] data_;
 			data_ = newData;
 		}
@@ -33,24 +31,40 @@ DynamicalArray& DynamicalArray::operator=( const DynamicalArray& rhs) {
 	}
 	return *this;
 }
-DynamicalArray::DynamicalArray(const DynamicalArray& obj) {
+
+DynamicalArray::DynamicalArray(const DynamicalArray &obj) {
 	size_ = obj.size_;
 	data_ = new int(size_);
-	for (int i (0); i < size_; i++){
+	for (int i(0); i < size_; i++) {
 		data_[i] = obj.data_[i];
 	}
+}
+
+bool DynamicalArray::operator==(const DynamicalArray &obj) const {
+	if (size_ == obj.size_) {
+		for (int i = 0; i < size_; i++) {
+			if (data_[i] != obj.data_[i]) {
+				return false;
+			}
+		}
+	}
+}
+
+bool DynamicalArray::operator!=(const DynamicalArray &obj) const {
+	return !operator==(obj);
 }
 
 int DynamicalArray::getSize() {
 	return size_;
 }
+
 void DynamicalArray::setSize(int size) {
 	if (size < 0) {
 		throw std::exception("Negative size!");
 	}
 	else {
 
-		int* newData = new int[size];
+		int *newData = new int[size];
 		if (size <= size_) {
 			for (int i(0); i < size; i++) {
 				newData[i] = data_[i];
@@ -70,19 +84,20 @@ void DynamicalArray::setSize(int size) {
 	}
 }
 
-int& DynamicalArray:: operator[](const int i) const {
+int &DynamicalArray::operator[](const int i) const {
 	if (i < 0 || i >= size_)
 		throw std::exception("Index out range");
 	else
-	return data_[i];
+		return data_[i];
 }
-std::ostream& DynamicalArray::writeTo(std::ostream& ostrm) const {
-	for (int i (0); i < size_; i++)
-	{
+
+std::ostream &DynamicalArray::writeTo(std::ostream &ostrm) const {
+	for (int i(0); i < size_; i++) {
 		ostrm << data_[i] << " ";
 	}
 	return ostrm;
 }
+
 DynamicalArray::~DynamicalArray() {
 	delete[]data_;
 }

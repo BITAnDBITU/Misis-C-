@@ -1,6 +1,7 @@
 #pragma once
 #ifndef STACK
 #define STACK
+
 #include <stddef.h>
 #include <iosfwd>
 
@@ -13,11 +14,11 @@ public:
 		clear();
 	}
 
-	StackOnList(const StackOnList& obj);
+	StackOnList(const StackOnList &obj);
 
-	StackOnList<T>& operator=(const StackOnList<T>& rhs);
+	StackOnList<T> &operator=(const StackOnList<T> &rhs);
 
-	void push(const T& value);
+	void push(const T &value);
 
 	void pop();
 
@@ -25,29 +26,31 @@ public:
 
 	void clear();
 
-	T& top();
+	T &top();
 
-	std::ostream& WriteTo(std::ostream& ostrm) const;
+	std::ostream &WriteTo(std::ostream &ostrm) const;
 
 private:
 	template<class A>
 	struct Node {
-		Node<A>()= default;
-		Node<A>* next_{ nullptr };
+		Node<A>() = default;
+
+		Node<A> *next_{ nullptr };
 		A data_{ 0 };
-		Node(Node<A>* next,const A& data) 
+
+		Node(Node<A> *next, const A &data)
 			: next_(next), data_(data) {
 
 		}
 	};
 
 private:
-	Node<T>* head_{ nullptr };
+	Node<T> *head_{ nullptr };
 };
 
 template<class T>
-StackOnList<T>::StackOnList(const StackOnList& obj) {
-	Node<T>* newNode = obj.head_;
+StackOnList<T>::StackOnList(const StackOnList &obj) {
+	Node<T> *newNode = obj.head_;
 	StackOnList<T> otherStack;
 	while (newNode != nullptr) {
 		otherStack.push(newNode->data_);
@@ -60,10 +63,10 @@ StackOnList<T>::StackOnList(const StackOnList& obj) {
 }
 
 template<class T>
-StackOnList<T>& StackOnList<T>::operator=(const StackOnList<T>& rhs) {
+StackOnList<T> &StackOnList<T>::operator=(const StackOnList<T> &rhs) {
 	if (this != &rhs) {
 		clear();
-		Node<T>* newNode = rhs.head_;
+		Node<T> *newNode = rhs.head_;
 		StackOnList<T> otherStack;
 		while (newNode != nullptr) {
 			otherStack.push(newNode->data_);
@@ -78,14 +81,14 @@ StackOnList<T>& StackOnList<T>::operator=(const StackOnList<T>& rhs) {
 }
 
 template<class T>
-void StackOnList<T>::push(const T& value) {
+void StackOnList<T>::push(const T &value) {
 	head_ = new Node<T>(head_, value);
 }
 
 template<class T>
 void StackOnList<T>::pop() {
 	if (nullptr != head_) {
-		Node<T>* deletedNode(head_);
+		Node<T> *deletedNode(head_);
 		head_ = head_->next_;
 		delete deletedNode;
 	}
@@ -104,7 +107,7 @@ void StackOnList<T>::clear() {
 }
 
 template<class T>
-T& StackOnList<T>::top() {
+T &StackOnList<T>::top() {
 	if (head_ == nullptr) {
 		throw std::exception("Stack is empty");
 	}
@@ -112,8 +115,8 @@ T& StackOnList<T>::top() {
 }
 
 template<class T>
-std::ostream& StackOnList<T>::WriteTo(std::ostream& ostrm) const{
-	Node<T>* printed_node(head_);
+std::ostream &StackOnList<T>::WriteTo(std::ostream &ostrm) const {
+	Node<T> *printed_node(head_);
 	ostrm << '{';
 	while (printed_node) {
 		ostrm << printed_node->data_;
@@ -125,8 +128,10 @@ std::ostream& StackOnList<T>::WriteTo(std::ostream& ostrm) const{
 	ostrm << '}';
 	return ostrm;
 }
-std::ostream& operator<<(std::ostream& ostrm, const StackOnList<int>& stack) {
+
+std::ostream &operator<<(std::ostream &ostrm, const StackOnList<int> &stack) {
 	return stack.WriteTo(ostrm);
 }
+
 #endif; // STACK
 

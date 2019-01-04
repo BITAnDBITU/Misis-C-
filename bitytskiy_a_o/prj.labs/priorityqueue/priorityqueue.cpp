@@ -21,6 +21,7 @@ PriorityQueue::PriorityQueue(const PriorityQueue &obj)
 		priorities_[i] = obj.priorities_[i];
 	}
 }
+
 PriorityQueue::~PriorityQueue() {
 	delete[] data_;
 	delete[] priorities_;
@@ -75,8 +76,7 @@ void PriorityQueue::push(int value, int priority) {
 	end_++;
 }
 
-std::ostream & PriorityQueue::writeTo(std::ostream & ostrm) const
-{
+std::ostream &PriorityQueue::writeTo(std::ostream &ostrm) const {
 	ostrm << "( ";
 	for (int i(0); i < end_; i++) {
 		ostrm << data_[i] << " ";
@@ -103,7 +103,6 @@ PriorityQueue &PriorityQueue::operator=(const PriorityQueue &rhs) {
 	return *this;
 }
 
-std::ostream & operator<<(std::ostream & ostrm, const PriorityQueue & obj)
-{
+std::ostream &operator<<(std::ostream &ostrm, const PriorityQueue &obj) {
 	return obj.writeTo(ostrm);
 }
