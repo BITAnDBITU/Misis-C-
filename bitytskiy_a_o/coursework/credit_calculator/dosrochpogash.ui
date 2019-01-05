@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>DosrochPay</string>
   </property>
   <widget class="QPushButton" name="pushButton_perechet">
    <property name="geometry">
@@ -32,7 +32,7 @@ color:#ffffff;</string>
     <string>Пересчитать кредит</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>80</x>

@@ -8,7 +8,7 @@
 #include <QStringList>
 #include <QTableWidgetItem>
 #include<QtMath>
-#include <QBuffer>
+
 
 ResultWindow::ResultWindow(QWidget *parent) :
     QDialog(parent),
@@ -407,9 +407,5 @@ void ResultWindow::on_pushButton_excel_clicked(){
             xlsx.write(j+2,i+1,str);
         }
     }
-
     xlsx.saveAs("C:/C++ projects/QT/KURSACH/test.xlsx");
-
-
-
 }
