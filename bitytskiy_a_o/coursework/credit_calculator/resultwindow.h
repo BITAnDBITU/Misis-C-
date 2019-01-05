@@ -34,7 +34,7 @@ public slots:
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_dosroch_clicked();
-
+    void on_pushButton_excel_clicked();
 
 private:
     Ui::ResultWindow *ui;

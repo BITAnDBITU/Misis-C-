@@ -41,11 +41,18 @@ void DosrochPogash::on_pushButton_perechet_clicked()
         DosrochPogash *window = new DosrochPogash(this);
         window->exec();
 
+    }else if(ui->lineEdit_summa->text() == ""){
+        hide();
+        resultWindow = new ResultWindow(this);
+        QObject::connect(this,SIGNAL(sendText(QString)),resultWindow,SLOT(resirvedText(QString)));
+        emit sendText(count+","+time+","+percent+","+period+","
+                      +typePercent+","+payType+","+startDate.toString("dd.MM.yyyy"));
+        resultWindow->exec();
+
     }else{
         hide();
         resultWindow = new ResultWindow(this);
         QObject::connect(this,SIGNAL(sendText(QString)),resultWindow,SLOT(resirvedText2(QString)));
-
         emit sendText(count+","+time+","+percent+","+period+","
                       +typePercent+","+payType+","+startDate.toString("dd.MM.yyyy")+","+ui->lineEdit_summa->text()
                       +","+ui->dateEdit_dosrochdate->date().toString("dd.MM.yyyy"));

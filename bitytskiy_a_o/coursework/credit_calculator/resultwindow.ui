@@ -142,9 +142,9 @@ color:#ffffff;</string>
   <widget class="QPushButton" name="pushButton_dosroch">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>50</y>
-     <width>221</width>
+     <x>600</x>
+     <y>70</y>
+     <width>321</width>
      <height>23</height>
     </rect>
    </property>
@@ -156,6 +156,27 @@ color:#ffffff;</string>
    </property>
    <property name="text">
     <string>Запланировать досрочное погошение</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_excel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>10</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#42aaff;
+border-radius: 10px;
+font: 10pt &quot;Times New Roman&quot;;
+color:#ffffff;
+
+</string>
+   </property>
+   <property name="text">
+    <string>Экспорт в Excel</string>
    </property>
   </widget>
  </widget>

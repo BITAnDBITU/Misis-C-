@@ -3,6 +3,7 @@
 # Project created by QtCreator 2018-12-04T21:51:51
 #
 #-------------------------------------------------
+include(C:/qtexcel/QtXlsxWriter-master/src/xlsx/qtxlsx.pri)
 
 QT       += core gui
 
@@ -44,3 +45,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+SUBDIRS += \
+    ../../../Users/Андрей/Desktop/QtXlsxWriter-master/qtxlsx.pro

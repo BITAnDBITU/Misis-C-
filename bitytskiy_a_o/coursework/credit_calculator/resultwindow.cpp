@@ -2,11 +2,13 @@
 #include "ui_resultwindow.h"
 #include "mainwindow.h"
 #include"dosrochpogash.h"
+#include "xlsxdocument.h"
 #include <QTableWidget>
 #include <QMessageBox>
 #include <QStringList>
 #include <QTableWidgetItem>
 #include<QtMath>
+#include <QBuffer>
 
 ResultWindow::ResultWindow(QWidget *parent) :
     QDialog(parent),
@@ -391,4 +393,23 @@ void ResultWindow::on_pushButton_dosroch_clicked()
     emit sendText(count+","+time+","+percent+","+period+","+typePercent+","+payType+","+startDate2.toString("dd.MM.yyyy"));
     window->exec();
     destroy();
+}
+
+void ResultWindow::on_pushButton_excel_clicked(){
+    QXlsx::Document xlsx;
+    for(int i(0);i < 6; i++){
+        QString str = ui->tableWidget->horizontalHeaderItem(i)->text();
+        xlsx.write(1,i+1,str);
+    }
+    for (int i(0); i < 6; i++) {
+        for (int j(0); j < ui->tableWidget->rowCount(); j++) {
+            QString str = ui->tableWidget->item(j,i)->text();
+            xlsx.write(j+2,i+1,str);
+        }
+    }
+
+    xlsx.saveAs("C:/C++ projects/QT/KURSACH/test.xlsx");
+
+
+
 }
