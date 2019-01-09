@@ -7,54 +7,53 @@
 
 class Rational {
 public:
-	Rational() = default;
+    Rational() = default;
 
-	Rational(const int numerator);
+    Rational(const int numerator);
 
-	Rational(const int numerator, const int denominator);
+    Rational(const int numerator, const int denominator);
 
-	bool operator==(const Rational &rhs) const;
+    bool operator==(const Rational &rhs) const;
 
+    bool operator!=(const Rational &rhs) const;
 
-	bool operator!=(const Rational &rhs) const;
+    Rational &operator+=(const Rational &rhs);
 
-	Rational &operator+=(const Rational &rhs);
+    Rational &operator+=(const int rhs);
 
-	Rational &operator+=(const int rhs);
+    Rational &operator-=(const Rational &rhs);
 
-	Rational &operator-=(const Rational &rhs);
+    Rational &operator-=(const int rhs);
 
-	Rational &operator-=(const int rhs);
+    Rational &operator*=(const Rational &rhs);
 
-	Rational &operator*=(const Rational &rhs);
+    Rational &operator*=(const int rhs);
 
-	Rational &operator*=(const int rhs);
+    Rational &operator/=(const Rational &rhs);
 
-	Rational &operator/=(const Rational &rhs);
+    Rational &operator/=(const int rhs);
 
-	Rational &operator/=(const int rhs);
+    int getNumerator();
 
-	int getNumerator();
+    void setNumerator(int numerator);
 
-	void setNumerator(int numerator);
+    int getDenominator();
 
-	int getDenominator();
+    void setDenominator(int numerator);
 
-	void setDenominator(int numerator);
+    void normalForm();
 
-	void normalForm();
+    std::ostream &writeTo(std::ostream &ostrm) const;
 
-	std::ostream &writeTo(std::ostream &ostrm) const;
-
-	std::istream &readFrom(std::istream &istrm);
+    std::istream &readFrom(std::istream &istrm);
 
 private:
-	int num{ 0 };
-	int den{ 1 };
+    int num{0};
+    int den{1};
 
-	static const char leftBrace{ '{' };
-	static const char separator{ '/' };
-	static const char rightBrace{ '}' };
+    static const char leftBrace{'{'};
+    static const char separator{'/'};
+    static const char rightBrace{'}'};
 };
 
 #endif

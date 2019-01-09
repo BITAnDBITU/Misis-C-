@@ -7,33 +7,33 @@
 class Queue {
 public:
 
-	Queue() = default;
+    Queue() = default;
 
-	Queue(const int size);
+    Queue(const int size);
 
-	Queue(const Queue &rhs);
+    Queue(const Queue &rhs);
 
-	~Queue();
+    ~Queue();
 
-	Queue &operator=(const Queue &rhs);
+    Queue &operator=(const Queue &rhs);
 
-	bool isEmpty();
+    bool isEmpty();
 
-	bool isFull();
+    bool isFull();
 
-	void push(const int val);
+    void push(const int val);
 
-	int top();
+    int top();
 
-	int pop();
+    int pop();
 
-	std::ostream &writeTo(std::ostream &ostrm) const;
+    std::ostream &writeTo(std::ostream &ostrm) const;
 
 private:
-	int *data_{ nullptr };
-	int size_;
-	int i_first;
-	int i_last;
+    int *data_{nullptr};
+    int size_;
+    int i_first;
+    int i_last;
 
 
 };

@@ -4,28 +4,28 @@
 
 class Matrix {
 public:
-	Matrix();
+    Matrix();
 
-	Matrix(const Matrix &rhs);
+    Matrix(const Matrix &rhs);
 
-	Matrix(const int sizeStr1_, const int sizeStol1_);
+    Matrix(const int sizeStr1_, const int sizeStol1_);
 
-	~Matrix();
+    ~Matrix();
 
-	int &at(const int i, const int j);
+    int &at(const int i, const int j);
 
-	int getSizeStr();
+    int getSizeStr();
 
-	int getSizeStol();
+    int getSizeStol();
 
-	Matrix &operator=(const Matrix &rhs);
+    Matrix &operator=(const Matrix &rhs);
 
-	std::ostream &writeTo(std::ostream &ostrm) const;
+    std::ostream &writeTo(std::ostream &ostrm) const;
 
 private:
-	int sizeStr_{ 0 };
-	int sizeStol_{ 0 };
-	int **data_{ nullptr };
+    int sizeStr_{0};
+    int sizeStol_{0};
+    int **data_{nullptr};
 };
 
 std::ostream &operator<<(std::ostream &ostrm, const Matrix &rhs);
