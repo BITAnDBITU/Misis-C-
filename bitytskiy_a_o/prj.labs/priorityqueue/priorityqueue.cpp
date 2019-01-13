@@ -39,14 +39,10 @@ int PriorityQueue::top() const {
     return data_[end_ - 1];
 }
 
-int PriorityQueue::pop() {
-    if (isEmpty()) {
-        throw std::exception("Queue is empty");
-    }
-
-    int result = data_[end_ - 1];
-    end_--;
-    return result;
+void PriorityQueue::pop() {
+	if (!isEmpty()) {
+		end_--;
+	}
 }
 
 void PriorityQueue::push(int value, int priority) {

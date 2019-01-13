@@ -22,7 +22,7 @@ public:
 
     int top() const;
 
-    int pop();
+    void pop();
 
     void push(int value, int priority);
 

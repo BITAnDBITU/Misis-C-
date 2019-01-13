@@ -62,7 +62,6 @@ void DynamicalArray::setSize(int size) {
     if (size < 0) {
         throw std::exception("Negative size!");
     } else {
-
         int *newData = new int[size];
         if (size <= size_) {
             for (int i(0); i < size; i++) {

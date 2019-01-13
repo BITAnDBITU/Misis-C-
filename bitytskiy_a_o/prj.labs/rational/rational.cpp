@@ -17,13 +17,9 @@ Rational::Rational(const int numerator, const int denominator) {
 
 bool Rational::operator==(const Rational &rhs) const {
     if (this != &rhs) {
-        Rational temprhs(rhs);
-        temprhs.normalForm();
-        Rational templhs(*this);
-        templhs.normalForm();
-        return (templhs.num == temprhs.num) && (templhs.den == temprhs.den);
+        return (num == rhs.num) && (den == rhs.den);
     }
-    return true;
+	return true;
 }
 
 int Rational::getNumerator() {
@@ -32,6 +28,7 @@ int Rational::getNumerator() {
 
 void Rational::setNumerator(int numerator) {
     num = numerator;
+	normalForm();
 }
 
 int Rational::getDenominator() {
@@ -41,6 +38,7 @@ int Rational::getDenominator() {
 void Rational::setDenominator(int denominator) {
     if (denominator != 0) {
         den = denominator;
+		normalForm();
     } else {
         throw std::exception("Divide by zero exception");
     }

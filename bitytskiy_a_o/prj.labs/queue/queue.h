@@ -25,15 +25,15 @@ public:
 
     int top();
 
-    int pop();
+    void pop();
 
     std::ostream &writeTo(std::ostream &ostrm) const;
 
 private:
     int *data_{nullptr};
-    int size_;
-    int i_first;
-    int i_last;
+	int size_{ 0 };
+    int i_first{ 0 };
+    int i_last{ 0 };
 
 
 };

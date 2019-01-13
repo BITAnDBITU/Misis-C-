@@ -27,11 +27,11 @@ void test1() {
     Queue queue2(queue1);
     try {
         cout << queue1.top() << endl;
-        cout << queue1.pop() << endl;
+		queue1.pop();
         cout << queue1.top() << endl;
-        cout << queue1.pop() << endl;
+        queue1.pop();
         cout << queue1.top() << endl;
-        cout << queue2.pop() << endl;
+        queue2.pop();
     }
     catch (const exception &) {
         cout << "Queue is empty" << endl;
@@ -44,12 +44,7 @@ void test1() {
     catch (const exception &) {
         cout << " top: Queue is empty" << endl;
     }
-    try {
-        cout << queue3.pop() << endl;
-    }
-    catch (const exception &) {
-        cout << "pop: Queue is empty" << endl;
-    }
+    
 }
 
 int main() {

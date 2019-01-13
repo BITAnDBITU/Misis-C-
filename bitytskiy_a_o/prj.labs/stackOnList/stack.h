@@ -33,11 +33,10 @@ public:
 private:
     template<class A>
     struct Node {
+		Node<A> *next_{ nullptr };
+		A data_{ 0 };
+
         Node<A>() = default;
-
-        Node<A> *next_{nullptr};
-        A data_{0};
-
         Node(Node<A> *next, const A &data)
                 : next_(next), data_(data) {
 
@@ -50,32 +49,38 @@ private:
 
 template<class T>
 StackOnList<T>::StackOnList(const StackOnList &obj) {
-    Node<T> *newNode = obj.head_;
-    StackOnList<T> otherStack;
-    while (newNode != nullptr) {
-        otherStack.push(newNode->data_);
-        newNode = newNode->next_;
-    }
-    while (!otherStack.isEmpty()) {
-        push(otherStack.top());
-        otherStack.pop();
-    }
+	if (obj.head_ != nullptr){
+		head_ = new Node<T>(obj.head_);
+		Node<T>* current_this = head_;
+		Node<T>* current_copy = obj.head_;
+		while (current_copy->nextNode_ != nullptr){
+			current_this->nextNode_ = new Node<T>(current_copy->nextNode_);
+			current_this = current_this->nextNode_;
+			current_copy = current_copy->nextNode_;
+		}
+	}
 }
 
 template<class T>
 StackOnList<T> &StackOnList<T>::operator=(const StackOnList<T> &rhs) {
     if (this != &rhs) {
-        clear();
-        Node<T> *newNode = rhs.head_;
-        StackOnList<T> otherStack;
-        while (newNode != nullptr) {
-            otherStack.push(newNode->data_);
-            newNode = newNode->next_;
-        }
-        while (!otherStack.isEmpty()) {
-            push(otherStack.top());
-            otherStack.pop();
-        }
+		clear();
+		if (head_ == nullptr){
+			head_ = new Node<T>();
+		}
+		head_->data_ = obj.head_->data_;
+
+		Node<T>* current_this = head_;
+		Node<T>* current_copy = obj.head_;
+
+		while (current_copy->nextNode_ != nullptr){
+			if (current_this->nextNode_ == nullptr){
+				current_this->nextNode_ = new Node<T>();
+			}
+			current_this->nextNode_->nextNode_->data_ = current_copy->nextNode_->data_;
+			current_copy = current_copy->nextNode_;
+			current_this = current_this->nextNode_;
+		}
     }
     return *this;
 }

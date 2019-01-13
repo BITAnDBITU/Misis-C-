@@ -30,7 +30,13 @@ bool Queue::isFull() {
 
 void Queue::push(const int val) {
     if (isFull()) {
-        throw std::exception("Queue is full");
+		int *newData(new int[size_*2]);
+		for (int i(0); i < size_; i++) {
+			newData[i % size_] = data_[i % size_];
+		}
+		delete[] data_;
+		data_ = newData;
+		size_ = 2*size_;
     } else {
         data_[i_last % size_] = val;
         i_last++;
@@ -50,13 +56,9 @@ Queue &Queue::operator=(const Queue &rhs) {
     return *this;
 }
 
-int Queue::pop() {
-    if (isEmpty()) {
-        throw std::exception("Queue is empty");
-    } else {
-        int result = data_[i_first % size_];
-        i_first++;
-        return result;
+void Queue::pop() {
+    if (!isEmpty()) {
+       i_first++;  
     }
 
 }
