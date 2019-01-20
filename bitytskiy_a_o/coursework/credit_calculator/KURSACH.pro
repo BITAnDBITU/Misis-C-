@@ -3,7 +3,6 @@
 # Project created by QtCreator 2018-12-04T21:51:51
 #
 #-------------------------------------------------
-include(C:/qtexcel/QtXlsxWriter-master/src/xlsx/qtxlsx.pri)
 
 QT       += core gui
 

@@ -23,7 +23,8 @@ signals:
     void sendText(QString str);
 
 private slots:
-    void on_pushButton_perechet_clicked();
+    void on_pushButton_perechet_clicked(); 
+    void on_back_button_clicked();
 
 private:
     ResultWindow *resultWindow;

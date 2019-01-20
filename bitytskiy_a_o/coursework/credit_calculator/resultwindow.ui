@@ -158,27 +158,6 @@ color:#ffffff;</string>
     <string>Запланировать досрочное погошение</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_excel">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>10</y>
-     <width>141</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:#42aaff;
-border-radius: 10px;
-font: 10pt &quot;Times New Roman&quot;;
-color:#ffffff;
-
-</string>
-   </property>
-   <property name="text">
-    <string>Экспорт в Excel</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

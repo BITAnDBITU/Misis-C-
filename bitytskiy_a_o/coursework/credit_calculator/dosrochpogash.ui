@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="pushButton_perechet">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>330</x>
      <y>220</y>
      <width>141</width>
      <height>23</height>
@@ -82,6 +82,25 @@ color:#ffffff;</string>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="back_button">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#42aaff;
+border-radius: 10px;
+font: 10pt &quot;Times New Roman&quot;;
+color:#ffffff;</string>
+   </property>
+   <property name="text">
+    <string>Отмена</string>
+   </property>
   </widget>
  </widget>
  <resources/>

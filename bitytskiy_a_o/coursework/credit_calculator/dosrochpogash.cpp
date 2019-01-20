@@ -59,3 +59,13 @@ void DosrochPogash::on_pushButton_perechet_clicked()
         resultWindow->exec();
     }
 }
+
+
+void DosrochPogash::on_back_button_clicked(){
+    hide();
+    resultWindow = new ResultWindow(this);
+    QObject::connect(this,SIGNAL(sendText(QString)),resultWindow,SLOT(resirvedText(QString)));
+    emit sendText(count+","+time+","+percent+","+period+","
+                  +typePercent+","+payType+","+startDate.toString("dd.MM.yyyy"));
+    resultWindow->exec();
+}

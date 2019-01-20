@@ -2,7 +2,6 @@
 #include "ui_resultwindow.h"
 #include "mainwindow.h"
 #include"dosrochpogash.h"
-#include "xlsxdocument.h"
 #include <QTableWidget>
 #include <QMessageBox>
 #include <QStringList>
@@ -44,7 +43,7 @@ void ResultWindow::resirvedText(QString str){
     typePercent = list.at(4);
     payType = list.at(5);
     startDate = QDate::fromString(list.at(6),"dd.MM.yyyy");
-    startDate2.setDate(startDate.year(),startDate.month(),startDate.day());
+    startDate3.setDate(startDate.year(),startDate.month(),startDate.day());
     createTable(ui->tableWidget);
 
 }
@@ -60,6 +59,7 @@ void ResultWindow::resirvedText2(QString str)
     typePercent = list.at(4);
     payType = list.at(5);
     startDate2 = QDate::fromString(list.at(6),"dd.MM.yyyy");
+    startDate3.setDate(startDate2.year(),startDate2.month(),startDate2.day());
     dosrochSumma = list.at(7);
     dosrochDate = QDate::fromString(list.at(8),"dd.MM.yyyy");
     createDosrochTable(ui->tableWidget);
@@ -387,25 +387,10 @@ void ResultWindow::setTableHeaders(QTableWidget *table)
 
 void ResultWindow::on_pushButton_dosroch_clicked()
 {
-    close();
+    hide();
     DosrochPogash *window = new DosrochPogash(this);
     QObject::connect(this,SIGNAL(sendText(QString)),window,SLOT(resirvedText(QString)));
-    emit sendText(count+","+time+","+percent+","+period+","+typePercent+","+payType+","+startDate2.toString("dd.MM.yyyy"));
+    emit sendText(count+","+time+","+percent+","+period+","+typePercent+","+payType+","+startDate3.toString("dd.MM.yyyy"));
     window->exec();
-    destroy();
 }
 
-void ResultWindow::on_pushButton_excel_clicked(){
-    QXlsx::Document xlsx;
-    for(int i(0);i < 6; i++){
-        QString str = ui->tableWidget->horizontalHeaderItem(i)->text();
-        xlsx.write(1,i+1,str);
-    }
-    for (int i(0); i < 6; i++) {
-        for (int j(0); j < ui->tableWidget->rowCount(); j++) {
-            QString str = ui->tableWidget->item(j,i)->text();
-            xlsx.write(j+2,i+1,str);
-        }
-    }
-    xlsx.saveAs("C:/C++ projects/QT/KURSACH/test.xlsx");
-}
